@@ -1,34 +1,32 @@
-import { useState } from "react"
-import Navbar from "./Navbar"
-import Products from "./Products"
+import { useState } from "react";
+import Navbar from "./Navbar";
+import Products from "./Products";
 
-const Home = ()=>{
+const Home = () => {
+  const [cart, setCart] = useState(0);
 
-  const [cart, setCart] = useState(0)
+  const handleClick = () => {
+    setCart(cart + 1);
+    localStorage.setItem("cart", cart);
+  };
 
-  const handleClick = ()=>{
-    setCart(cart+1)
-    localStorage.setItem("cart", cart)
+  const [searchQuery, setSearchQuery] = useState("");
 
-  } 
-
-
-  const [searchQuery, setSearchQuery] = useState("")
-
-
-  return(
+  return (
     <>
-      <Navbar cart={cart} setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
-      <Products handleClick={handleClick} searchQuery={searchQuery}/>
+      <Navbar
+        cart={cart}
+        setSearchQuery={setSearchQuery}
+        searchQuery={searchQuery}
+      />
+      <Products handleClick={handleClick} searchQuery={searchQuery} />
     </>
-  )
-}
+  );
+};
 
-export default Home
-
-
+export default Home;
 
 // <>
-    //   <Navbar cart={cart}/>
-    //   <Products handleClick={handleClick} />
-    // </>
+//   <Navbar cart={cart}/>
+//   <Products handleClick={handleClick} />
+// </>
